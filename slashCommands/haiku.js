@@ -7,7 +7,7 @@ module.exports = {
       name: "haiku",
       description: "Get a random haiku"
   },
-  run: async (bot, interaction, Reply) => {
+  run: async (interaction) => {
     axios.get(`https://api.gabirmotors.com/haikus`).then(haikus => {
       const id = Math.floor(Math.random() * haikus.data.length - 1)
       const randomHaiku = haikus.data[id]
@@ -17,7 +17,7 @@ module.exports = {
       hEmbed.setTimestamp();
       hEmbed.setFooter(`Gabir Motors`);
 
-      return Reply.sendEmbed(hEmbed)
+      return interaction.reply({ embeds: [ hEmbed ] })
     })
   } 
 }

@@ -5,15 +5,18 @@ module.exports = {
       name: "check",
       description: "Get a random quote"
   },
-  run: async (bot, interaction, Reply) => {
-    axios.get(`https://api.gabirmotors.com/driver/${interaction.data.options[0].value}`).then(async (drivers) => {
-      let targetMember = bot.users.cache.get(interaction.member.user.id);
+  run: async (interaction) => {
+    var found = false
+    axios.get(`https://api.gabirmotors.com/driver/${interaction.options.getString('number')}`).then(async (drivers) => {
       drivers.data.forEach(driver => {
-        if (driver.car_number == interaction.data.options[0].value) {
-          return Reply.sendText(`${(driver.team != undefined) ? `**${driver.team.name}**` : ''} ${driver.name} ${(driver.username != "" && driver.username != undefined) ? `(${driver.username})` : ''} has already taken the number \`${driver.car_number}\``, true)
+        if (driver.car_number == interaction.options.getString('number')) {
+          found = true
+          return interaction.reply({ content: `${(driver.team != undefined) ? `**${driver.team.name}**` : ''} ${driver.name} ${(driver.username != "" && driver.username != undefined) ? `(${driver.username})` : ''} has already taken the number \`${driver.car_number}\``, ephemeral: true})
         }
       })
-      return Reply.sendText(`According to my calculations, the number \`${interaction.data.options[0].value}\` is available!`, true)
+      if (!found) {
+        return interaction.reply({ content: `According to my calculations, the number \`${interaction.options.getString('number')}\` is available!`, ephemeral: true})
+      }
     })
   } 
 }

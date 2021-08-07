@@ -7,7 +7,7 @@ module.exports = {
       name: "nextrace",
       description: "Get info the next race"
   },
-  run: async (bot, interaction, Reply) => {
+  run: async (interaction) => {
     axios.get(`https://api.gabirmotors.com/calendar`).then(res => {
       const calendar = res.data;
       const currentTime = Date.now().toString().slice(0, -3);
@@ -24,7 +24,7 @@ module.exports = {
           hEmbed.setTimestamp();
           hEmbed.setFooter(`Gabir Motors`);
 
-          return Reply.sendEmbed(hEmbed)
+          return interaction.reply({ embeds: [ hEmbed ] })
         }
       })
     })

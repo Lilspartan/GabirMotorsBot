@@ -7,8 +7,8 @@ module.exports = {
       name: "team",
       description: "Get info about a team"
   },
-  run: async (bot, interaction, Reply) => {
-    chosenOption = interaction.data.options[0].value
+  run: async (interaction) => {
+    chosenOption = interaction.options.getString('team')
     axios.get(`https://api.gabirmotors.com/team/${chosenOption}`)
     .then(res => {
       let embed = new MessageEmbed();
@@ -21,7 +21,7 @@ module.exports = {
       embed.setColor(color.gold);
       embed.setTimestamp();
       embed.setFooter(`Gabir Motors`);
-      return Reply.sendEmbed(embed)
+      return interaction.reply({ embeds: [ embed ] })
     })
   } 
 }
