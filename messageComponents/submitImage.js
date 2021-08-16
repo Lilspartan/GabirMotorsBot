@@ -14,13 +14,12 @@ module.exports = {
 
     var submissionObject = {
       interactionUserId: interaction.user.id,
+      userName: intMessage.author.username,
       messageUser: intMessage.author.id,
       messageId: intMessage.id,
       messageContent: intMessage.content,
       attachments: Array.from(intMessage.attachments.values()).map((a) => {
-        return {
-          link: a.attachment
-        }
+        return a.attachment
       })
     }
     
