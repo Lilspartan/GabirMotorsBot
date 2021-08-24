@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon index.js 2>err.out",
-    "start": "node index.js 2>err.out"
+    "start": "node index.js 2>err.out",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +16,10 @@
     "chalk": "^4.1.2",
     "discord.js": "^13.1.0",
     "express": "^4.17.1",
+    "google-spreadsheet": "^3.1.15",
     "node": "^16.6.1",
-    "npm": "^7.20.5"
+    "nodemon": "^2.0.12",
+    "npm": "^7.20.5",
+    "uuid": "^8.3.2"
   }
 }

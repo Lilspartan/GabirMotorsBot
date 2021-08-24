@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const color = require('../JSON/colors.json');
+const color = require('../../../JSON/colors.json');
 const axios = require('axios');
 const fs = require('fs')
 
@@ -41,6 +41,7 @@ module.exports = {
       if (doAdd) {
         submissions.push(submissionObject)
         await fs.writeFileSync('./JSON/submittedImages.json', JSON.stringify(submissions, null, 4))
+        axios.post('https://i.gabirmotors.com/upload', submissionObject)
         interaction.reply({ content: "Submission Recieved!", ephemeral: true })
       }
     } else {

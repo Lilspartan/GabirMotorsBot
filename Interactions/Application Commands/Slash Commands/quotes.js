@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const color = require('../JSON/colors.json');
+const color = require('../../../JSON/colors.json');
 const axios = require('axios');
 
 module.exports = {
